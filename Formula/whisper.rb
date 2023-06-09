@@ -5,34 +5,45 @@
 class Whisper < Formula
   desc "Create and fetch whisper secret messages and files via the command-line"
   homepage "https://whisper.rotational.dev"
-  version "1.1.1"
+  version "1.2.0"
   license "Apache-2.0"
-  bottle :unneeded
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/rotationalio/whisper/releases/download/v1.1.1/whisper_1.1.1_darwin_amd64.tar.gz"
-      sha256 "057be8171c2c69ec42c4f1abbb74f5295b226a930602261af52647d20a55265e"
-    end
     if Hardware::CPU.arm?
-      url "https://github.com/rotationalio/whisper/releases/download/v1.1.1/whisper_1.1.1_darwin_arm64.tar.gz"
-      sha256 "613b5a3c65538475a3dc3a357d590d653140425d410b869744625ab524cdb990"
+      url "https://github.com/rotationalio/whisper/releases/download/v1.2.0/whisper_1.2.0_darwin_arm64.tar.gz"
+      sha256 "e2a4e34b4d6bebb2e4c74b4d70d10fc3c6a0fc0767288c4e5b3f975029777f22"
+
+      def install
+        bin.install "whisper"
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/rotationalio/whisper/releases/download/v1.2.0/whisper_1.2.0_darwin_amd64.tar.gz"
+      sha256 "bf381c8e964f0c6363af7b72aa2b167814d89ad15d26f33d26cf2be1b63ab488"
+
+      def install
+        bin.install "whisper"
+      end
     end
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/rotationalio/whisper/releases/download/v1.1.1/whisper_1.1.1_linux_amd64.tar.gz"
-      sha256 "4c1ec773473d4a8b54f354d287ffdf6386f3a31ef104321769e2f9e8ea8fbc7f"
-    end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/rotationalio/whisper/releases/download/v1.1.1/whisper_1.1.1_linux_arm64.tar.gz"
-      sha256 "4d857df516206e4ac60f3ac3b300a1bdff31f85ec08bc879662638f305d49e3d"
-    end
-  end
+      url "https://github.com/rotationalio/whisper/releases/download/v1.2.0/whisper_1.2.0_linux_arm64.tar.gz"
+      sha256 "e3151e182b733123f0b9e0531c69845c0dfdb64556e32e64d05041ae6ea34659"
 
-  def install
-    bin.install "whisper"
+      def install
+        bin.install "whisper"
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/rotationalio/whisper/releases/download/v1.2.0/whisper_1.2.0_linux_amd64.tar.gz"
+      sha256 "cffc49420a510a840c395afccdec97daf08d8d6bd79ca6c5c1685dfa3ba1a876"
+
+      def install
+        bin.install "whisper"
+      end
+    end
   end
 
   test do
